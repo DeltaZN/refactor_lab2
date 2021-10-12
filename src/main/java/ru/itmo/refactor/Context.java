@@ -5,12 +5,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ru.itmo.refactor.model.MusicalComposition;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Getter
 @NoArgsConstructor
 public class Context {
-    private final ArrayList<MusicalComposition> compositions = new ArrayList<>();
+    private final CopyOnWriteArrayList<MusicalComposition> compositions = new CopyOnWriteArrayList<>();
     @Setter
     private boolean isRunning = true;
 }
