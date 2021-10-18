@@ -12,6 +12,7 @@ public class Client {
     private final Socket clientSocket;
     private final PrintWriter out;
     private final BufferedReader in;
+    public boolean isRunning = true;
 
     @SneakyThrows
     public Client(String ip, int port) {
@@ -20,7 +21,7 @@ public class Client {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         new Thread(() -> {
             try {
-                while (true) {
+                while (isRunning) {
                     String str = in.readLine();
                     System.out.println(str);
                 }
@@ -32,6 +33,9 @@ public class Client {
 
     public void sendMessage(String msg) {
         out.println(msg);
+        if (msg.equals("quit")) {
+            isRunning = false;
+        }
     }
 
     @SneakyThrows

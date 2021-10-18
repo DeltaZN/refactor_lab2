@@ -10,9 +10,10 @@ public class Main {
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Client client = new Client("127.0.0.1", 18080);
-        while (true) {
-            String str = reader.readLine();
+        while (client.isRunning) {
+            String str = reader.readLine().trim();
             client.sendMessage(str);
         }
+        client.stopConnection();
     }
 }
